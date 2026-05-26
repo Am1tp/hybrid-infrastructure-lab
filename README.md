@@ -83,9 +83,13 @@ Use a staged rollout approach to:
 ### Completed
 - Hardware acquisition
 - Initial planning and design
+- MikroTik setup & deployment (updated RouterOS, created config backups, confirmed network connectivity with test client)
+  
 ### In Progress
 - Architecture diagram creation
-- MikroTik setup & deployment
+- Managed switch deployment
+- Physical network topology implementation
+  
 ### Planned
 - Managed switch deployment
 - VLAN design and implementation
