@@ -84,15 +84,14 @@ Use a staged rollout approach to:
 - Hardware acquisition
 - Initial planning and design
 - MikroTik setup & deployment (updated RouterOS, created config backups, confirmed network connectivity with test client)
+- Architecture diagram creation
+- Managed switch deployment (updated firmware, created config backups, confirmed network connectivity with test client)
   
 ### In Progress
-- Architecture diagram creation
-- Managed switch deployment
 - Physical network topology implementation
+- VLAN design and implementation
   
 ### Planned
-- Managed switch deployment
-- VLAN design and implementation
 - Secure onboarding of used hardware (Dell OptiPlex 3040, HP t640 Thin Client)
 - Raspberry Pi integration
 - Monitoring and observability implementation
