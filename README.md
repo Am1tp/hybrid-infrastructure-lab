@@ -40,6 +40,8 @@ This project aims to develop practical hands-on experience in:
 - Proxmox VE
 - AWS CloudWatch
 - MikroTik RouterOS
+- Python
+- Paramiko
 
 ### Network Design
 
@@ -49,6 +51,7 @@ This project aims to develop practical hands-on experience in:
 - Dedicated DHCP scopes per VLAN
 - VLAN 10 - Main (trusted devices) 
 - VLAN 20 - Isolated (new device onboarding)
+- Automated MikroTik configuration backup implemented to support rollback and recovery of router
 
 #### Network Goals
 
@@ -132,6 +135,8 @@ Use a staged rollout approach to:
 - Managed switch deployment (updated firmware, created config backups, confirmed network connectivity with test client)
 - Physical network topology implementation
 - VLAN design and implementation
+- Implement Python script to automatically back up MikroTik configuration using SSH and RouterOS exports
+- Configure automated scheduled backups using python script with added timestamps to locally saved file
   
 ### In Progress
 - VLAN segmentation - deployment and validation
