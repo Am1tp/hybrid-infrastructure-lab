@@ -30,7 +30,7 @@ This project aims to develop practical hands-on experience in:
 - Desktop Workstation
 - Laptop Test Device
 
-### Technologies
+### Core Technologies
 
 - Grafana
 - Prometheus
@@ -40,6 +40,39 @@ This project aims to develop practical hands-on experience in:
 - Proxmox VE
 - AWS CloudWatch
 - MikroTik RouterOS
+
+### Network Design
+
+- The lab network is built around a MikroTik RB760iGS router with 2x TP-Link TL-SG605E Managed Switches
+- The lab uses "Router on a Stick" (ROAS) with managed L2 switching and VLAN segmentation
+- 802.1Q VLAN trunking between managed switches
+- Dedicated DHCP scopes per VLAN
+- VLAN 10 - Main (trusted devices) 
+- VLAN 20 - Isolated (new device onboarding)
+
+#### Network Goals
+
+- Separate trusted infrastructure from newly onboarded and testing devices
+- Reduce risk when onboarding used or untrusted hardware into the lab
+- Simulate enterprise-style network segmentation
+- Support future virtualisation and security tooling
+- Maintain operational stability of both home network and lab network during staged infrastructure changes
+
+#### Operational Approach
+
+- Implement changes to lab network using a staged deployment methodology to minimise potential disruptions
+- Maintain rollback capability with configuration backups before major infrastructure changes
+- Ensure management recovery paths always remain available during testing and troubleshooting
+
+---
+
+### Monitoring & Observability
+
+
+---
+
+### Virtualisation Platform
+
 
 
 ---
@@ -66,6 +99,17 @@ This project aims to develop practical hands-on experience in:
 - AWS-integrated hybrid services
 
 ---
+## Architecture Diagrams
+
+### Current VLAN Segmented Topology
+
+![VLAN Segmented Topology](docs/diagrams/vlan-segmented-topology.PNG)
+
+Additional deployment diagrams:
+
+- [Initial MikroTik Deployment](docs/diagrams/initial-mikrotik-deployment.png)  
+- [Managed Switch Deployment](docs/diagrams/managed-switch-deployment.png)
+
 ## Deployment Strategy
 
 Use a staged rollout approach to:  
@@ -87,10 +131,10 @@ Use a staged rollout approach to:
 - Architecture diagram creation
 - Managed switch deployment (updated firmware, created config backups, confirmed network connectivity with test client)
 - Physical network topology implementation
-  
-### In Progress
 - VLAN design and implementation
   
+### In Progress
+- VLAN segmentation - deployment and validation
 ### Planned
 - Secure onboarding of used hardware (Dell OptiPlex 3040, HP t640 Thin Client)
 - Raspberry Pi integration
@@ -104,8 +148,13 @@ Use a staged rollout approach to:
 
 ---
 
+## Issues & Troubleshooting
+
+- Diagnosed and resolved MikroTik VLAN deployment issue where DNS and management traffic were being blocked by firewall interface-list behaviour
+- Resolved temporary management lockout during VLAN migration by using direct recovery access
+
 ## Related Projects
 
-- raspberry-pi-system-monitor
-- pihole-infrastructure
+- [raspberry-pi-system-monitor](https://github.com/Am1tp/raspberry-pi-system-monitor)
+- [pihole-infrastructure](https://github.com/Am1tp/pihole-infrastructure)
 
