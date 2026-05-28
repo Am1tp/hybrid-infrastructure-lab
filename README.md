@@ -52,6 +52,10 @@ This project aims to develop practical hands-on experience in:
 - VLAN 10 - Main (trusted devices) 
 - VLAN 20 - Isolated (new device onboarding)
 - Automated MikroTik configuration backup implemented to support rollback and recovery of router
+- Enforced inter-vlan isolation using MikroTik firewall filtering rules
+- Restricted access from onboarding vlan to management vlan while still preserving DNS, DHCP and internet connectivity
+- Implemented dedicated management subnet for router and switch configurations
+
 
 #### Network Goals
 
@@ -66,6 +70,8 @@ This project aims to develop practical hands-on experience in:
 - Implement changes to lab network using a staged deployment methodology to minimise potential disruptions
 - Maintain rollback capability with configuration backups before major infrastructure changes
 - Ensure management recovery paths always remain available during testing and troubleshooting
+- Validate network segmentation and firewall policy using endpoint testing before wider deployment
+- Maintain a dedicated onboarding network for isolated device testing and validation
 
 ---
 
@@ -137,11 +143,14 @@ Use a staged rollout approach to:
 - VLAN design and implementation
 - Implement Python script to automatically back up MikroTik configuration using SSH and RouterOS exports
 - Configure automated scheduled backups using python script with added timestamps to locally saved file
+- VLAN segmentation - deployment and validation
   
 ### In Progress
-- VLAN segmentation - deployment and validation
-### Planned
+- Managed switch trunk link configuration and validation
+- Managed switch VLAN propagation and endpoint testing
 - Secure onboarding of used hardware (Dell OptiPlex 3040, HP t640 Thin Client)
+
+### Planned
 - Raspberry Pi integration
 - Monitoring and observability implementation
 - AWS CloudWatch implementation
@@ -157,6 +166,9 @@ Use a staged rollout approach to:
 
 - Diagnosed and resolved MikroTik VLAN deployment issue where DNS and management traffic were being blocked by firewall interface-list behaviour
 - Resolved temporary management lockout during VLAN migration by using direct recovery access
+- Identified and corrected legacy switch management addressing remaining from pre-VLAN deployment
+- Diagnosed inter-VLAN management reachability behaviour and implemented MikroTik firewall filter rules to enforce onboarding VLAN isolation
+
 
 ## Related Projects
 
