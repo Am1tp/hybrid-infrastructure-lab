@@ -162,10 +162,12 @@ Use a staged rollout approach to:
 - Managed switch VLAN propagation and endpoint testing
 - Secure onboarding of used hardware (Dell OptiPlex 3040)
 - Proxmox virtualisation platform deployment
+- Ubuntu Server VM deploymen
   
 ### In Progress
+- VLAN refactoring and implementation
 - Raspberry Pi integration
-- Ubuntu Server VM deployment
+
 
 ### Planned
 - Monitoring and observability VM deployment
