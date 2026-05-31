@@ -50,6 +50,7 @@ The lab provides hands-on experience in:
 - Dedicated DHCP scopes per VLAN
 - VLAN 10 - Main (trusted devices) 
 - VLAN 20 - Isolated (new device onboarding)
+- VLAN 30 - Servers
 - Automated MikroTik configuration backup to support rollback and recovery of router
 - Implemented dedicated management subnet for router and switch configurations
 
@@ -115,22 +116,23 @@ The lab provides hands-on experience in:
 
 ## Planned Architecture
 
-- MikroTik core routing
-- Managed switch uplinks and trunking
-- VLAN segmentation
-- Monitoring and observability platform
-- Proxmox virtualisation platform
-- AWS-integrated hybrid services
+- [X] MikroTik core routing
+- [X] Managed switch uplinks and trunking
+- [X] VLAN segmentation
+- [ ] Monitoring and observability platform
+- [X] Proxmox virtualisation platform
+- [ ] AWS-integrated hybrid services
 
 ---
 ## Architecture Diagrams
 
-### Current VLAN Segmented Topology
+### Current VLAN Segmented Topology (V2)
 
-![VLAN Segmented Topology](docs/diagrams/vlan-segmented-topology.PNG)
+![VLAN Segmented Topology V2](docs/diagrams/vlan-segmented-topology-v2.JPG)
 
 Additional deployment diagrams:
 
+- [VLAN Segmented Topology V1](docs/diagrams/vlan-segmented-topology.PNG)
 - [Initial MikroTik Deployment](docs/diagrams/initial-mikrotik-deployment.png)  
 - [Managed Switch Deployment](docs/diagrams/managed-switch-deployment.png)
 
@@ -149,29 +151,31 @@ Use a staged rollout approach to:
 ## Current Status
 
 ### Completed
-- Hardware acquisition
-- Initial planning and design
-- MikroTik setup & deployment (updated RouterOS, created config backups, confirmed network connectivity with test client)
-- Architecture diagram creation
-- Managed switch deployment (updated firmware, created config backups, confirmed network connectivity with test client)
-- Physical network topology implementation
-- VLAN design and implementation
-- Implement Python script to automatically back up MikroTik configuration using SSH and RouterOS exports
-- Configure automated scheduled backups using python script with added timestamps to locally saved file
-- Managed switch trunk link configuration and validation
-- Managed switch VLAN propagation and endpoint testing
-- Secure onboarding of used hardware (Dell OptiPlex 3040)
-- Proxmox virtualisation platform deployment
-- Ubuntu Server VM deploymen
+- [X] Hardware acquisition
+- [X] Initial planning and design
+- [X] MikroTik setup & deployment (updated RouterOS, created config backups, confirmed network connectivity with test client)
+- [X] Architecture diagram creation
+- [X] Managed switch deployment (updated firmware, created config backups, confirmed network connectivity with test client)
+- [X] Physical network topology implementation
+- [X] VLAN design and implementation
+- [X] Implement Python script to automatically back up MikroTik configuration using SSH and RouterOS exports
+- [X] Configure automated scheduled backups using python script with added timestamps to locally saved file
+- [X] Managed switch trunk link configuration and validation
+- [X] Managed switch VLAN propagation and endpoint testing
+- [X] Secure onboarding of used hardware (Dell OptiPlex 3040)
+- [X] Proxmox virtualisation platform deployment
+- [X] Ubuntu Server VM deployment
+- [X] VLAN design refactoring and implementation
+- [X] Proxmox host migration from onboarding VLAN to server VLAN
+- [X] Ubuntu Server VM migration from onboarding VLAN to server VLAN
+- [X] Desktop-based administration restored from trusted management VLAN
   
 ### In Progress
-- VLAN refactoring and implementation
-- Raspberry Pi integration
-
+- [ ] Raspberry Pi integration
+- [ ] Monitoring and observability VM deployment
+- [ ] Windows Server Active Directory lab
 
 ### Planned
-- Monitoring and observability VM deployment
-- Windows Server Active Directory lab
 - AWS CloudWatch implementation
 - Centralised device log collection 
 - Automated device configuration backups
@@ -191,8 +195,12 @@ Use a staged rollout approach to:
 - Investigated management-plane exposure by validating inter-VLAN firewall behaviour, service accessibility and discovery protocols across segmented VLAN infrastructure  
 - Implemented dedicated management interface list and restricted WinBox, SSH, MAC Server and Neighbor Discovery access to the trusted management VLAN only  
 - Successfully hardened Onboarding VLAN isolation while preserving DHCP, DNS and internet connectivity for untrusted devices
-
-
+- Diagnosed VLAN30 connectivity failure caused by SW02 Port 4 retaining its VLAN20 PVID after being reassigned as an untagged VLAN30 access port
+- Updated Proxmox host network configuration after identifying that the host retained its VLAN20 addressing following migration to the VLAN30 server network
+- Reconfigured Ubuntu Server VM networking after identifying that the VM retained its previous VLAN20 DHCP lease after the Proxmox bridge moved to VLAN30
+- Diagnosed inter-VLAN firewall rule ordering issue where VLAN30 return traffic to VLAN10 was dropped before established and related traffic was accepted
+- Distinguished MikroTik input-chain gateway traffic from forward-chain inter-VLAN host traffic during firewall validation and rule placement
+- Identified local Windows firewall behaviour as the cause of VLAN20 laptop ICMP reachability issues after validating MikroTik routing, VLAN tagging and firewall policy
 
 ## Related Projects
 
