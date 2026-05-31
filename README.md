@@ -1,10 +1,9 @@
 # hybrid-infrastructure-lab
 
 ## Overview
+A self-hosted enterprise-style hybrid infrastructure lab used to develop and demonstrate practical skills in networking, Linux administration, virtualisation, observability, automation and cloud-integrated operations.
 
-A self-hosted enterprise-style hybrid lab designed to develop practical skills in networking, observability, Linux administration, virtualisation and cloud-integrated operations.
-
-This project aims to develop practical hands-on experience in:
+The lab provides hands-on experience in:
 
 - Network planning, implementation and management
 - Routing, switching and VLAN segmentation
@@ -161,18 +160,21 @@ Use a staged rollout approach to:
 - Configure automated scheduled backups using python script with added timestamps to locally saved file
 - Managed switch trunk link configuration and validation
 - Managed switch VLAN propagation and endpoint testing
+- Secure onboarding of used hardware (Dell OptiPlex 3040)
+- Proxmox virtualisation platform deployment
   
 ### In Progress
-- Secure onboarding of used hardware (Dell OptiPlex 3040, HP t640 Thin Client)
 - Raspberry Pi integration
+- Ubuntu Server VM deployment
 
 ### Planned
-- Monitoring and observability implementation
+- Monitoring and observability VM deployment
+- Windows Server Active Directory lab
 - AWS CloudWatch implementation
-- Proxmox virtualisation platform deployment
-- Linux virtual machine deployment
 - Centralised device log collection 
 - Automated device configuration backups
+- Secure onboarding of used hardware (HP t640 Thin Client)
+- Security monitoring
 - ESP32 experimentation
 
 ---
