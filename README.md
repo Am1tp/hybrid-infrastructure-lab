@@ -93,12 +93,100 @@ The lab provides hands-on experience in:
 
 ### Monitoring & Observability
 
+The lab includes a dedicated observability platform running on a Debian virtual machine hosted on Proxmox VE.
+
+#### Observability Stack
+
+- Prometheus
+- Grafana
+- Node Exporter
+- cAdvisor
+
+#### Monitoring Coverage
+
+##### Proxmox Host
+
+- CPU utilisation
+- Memory utilisation
+- Disk utilisation
+- Network throughput
+- System uptime
+- System load
+
+##### Virtual Machines
+
+- debian-monitoring-01
+- ubuntu-docker-01
+
+Metrics collected:
+
+- CPU utilisation
+- Memory utilisation
+- Disk utilisation
+- Network throughput
+- System uptime
+- System load
+
+##### Containers
+
+Container-level monitoring is provided through cAdvisor.
+
+Metrics collected:
+
+- Container CPU utilisation
+- Container memory utilisation
+- Container status and availability
+
+##### Grafana Dashboards
+
+- Homelab Overview
+- proxmox01 Dashboard
+- debian-monitoring-01 Dashboard
+- ubuntu-docker-01 Dashboard
+- Container Monitoring Dashboard
+
+### Dashboard Screenshots
+
+#### Homelab Overview
+![Homelab Overview](docs/diagrams/homelab-overview-dashboard.JPG)
+
+#### Container Monitoring
+![Container Monitoring](docs/diagrams/container-monitoring-dashboard.JPG)
+
+#### Proxmox Host Monitoring
+![Proxmox Dashboard](docs/diagrams/proxmox01-dashboard.JPG)
 
 ---
 
 ### Virtualisation Platform
 
+The lab uses Proxmox VE as the primary virtualisation platform running on a Dell OptiPlex 3040.
 
+#### Current Virtual Machines
+
+##### proxmox01
+
+- Proxmox VE hypervisor
+- Hosts all virtualised lab workloads
+- Monitored using Prometheus, Grafana and Node Exporter
+
+##### debian-monitoring-01
+
+Dedicated observability platform providing:
+
+- Grafana
+- Prometheus
+- Node Exporter
+- cAdvisor
+
+##### ubuntu-docker-01
+
+Docker workload host providing:
+
+- Docker Engine
+- Docker Compose
+- Containerised application deployment
+- Container-level monitoring via cAdvisor
 
 ---
 
@@ -119,9 +207,11 @@ The lab provides hands-on experience in:
 - [X] MikroTik core routing
 - [X] Managed switch uplinks and trunking
 - [X] VLAN segmentation
-- [ ] Monitoring and observability platform
+- [X] Monitoring and observability platform
 - [X] Proxmox virtualisation platform
+- [ ] Wireless Infrastructure Deployment
 - [ ] AWS-integrated hybrid services
+- [ ] Windows Server Active Directory
 
 ---
 ## Architecture Diagrams
@@ -169,19 +259,21 @@ Use a staged rollout approach to:
 - [X] Proxmox host migration from onboarding VLAN to server VLAN
 - [X] Ubuntu Server VM migration from onboarding VLAN to server VLAN
 - [X] Desktop-based administration restored from trusted management VLAN
+- [X] Debian VM deployment
+- [X] Proxmox host monitoring implementation
+- [X] Container monitoring implementation using cAdvisor
   
 ### In Progress
-- [ ] Raspberry Pi integration
-- [ ] Monitoring and observability VM deployment
 - [ ] Windows Server Active Directory lab
 
 ### Planned
+- Wireless infrastructure deployment (MikroTik cAP ac)
+- Raspberry Pi integration
 - AWS CloudWatch implementation
 - Centralised device log collection 
 - Automated device configuration backups
 - Secure onboarding of used hardware (HP t640 Thin Client)
 - Security monitoring
-- ESP32 experimentation
 
 ---
 
