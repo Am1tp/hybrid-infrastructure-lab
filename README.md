@@ -364,8 +364,6 @@ Metrics collected:
 - ubuntu-docker-01 Dashboard
 - Container Monitoring Dashboard
 
-#### Dashboard Screenshots
-
 #### Homelab Overview
 ![Homelab Overview](docs/diagrams/homelab-overview-dashboard.JPG)
 
