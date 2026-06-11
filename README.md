@@ -1,22 +1,138 @@
 # hybrid-infrastructure-lab
 
-## Overview
+## Navigation
+
+- 📖 [Overview](#overview)
+- 🎯 [Project Goals](#project-goals)
+- 📊 [Current Status](#current-status)
+- ⚙️ [Current Lab Capabilities](#current-lab-capabilities)
+- 🏗️ [Architecture Diagrams](#architecture-diagrams)
+- 🖥️ [Current Infrastructure](#current-infrastructure)
+- 🌐 [Network Design](#network-design)
+- 💻 [Virtualisation Platform](#virtualisation-platform)
+- 🏢 [Active Directory & Windows Administration](#active-directory--windows-administration)
+- 📈 [Monitoring & Observability](#monitoring--observability)
+- 💾 [Backup & Recovery Automation](#backup--recovery-automation)
+- 🔍 [Issues & Troubleshooting](#issues--troubleshooting)
+- 🚀 [Roadmap](#roadmap)
+- 🔗 [Related Projects](#related-projects)
+
+---
+## 📖 Overview
+
 A self-hosted enterprise-style hybrid infrastructure lab used to develop and demonstrate practical skills in networking, Linux administration, virtualisation, observability, automation and cloud-integrated operations.
 
 The lab provides hands-on experience in:
 
 - Network planning, implementation and management
 - Routing, switching and VLAN segmentation
+- Windows Server and Active Directory administration
+- DNS and Group Policy management
 - Observability and monitoring
 - Linux administration
 - Virtualisation and self-hosted services
+- Backup, recovery and automation
 - Cloud-integrated and hybrid environments
 - Troubleshooting and operational workflows
 - Documentation and architecture design
 
 ---
+## 🎯 Project Goals
 
-## Current Infrastructure
+- Build and operate a realistic hybrid infrastructure environment
+- Develop practical networking, systems administration and automation skills
+- Implement monitoring, logging and observability solutions
+- Gain hands-on experience with Windows, Linux and virtualisation technologies
+- Integrate cloud services with on-premises infrastructure
+- Develop operational workflows for backup, recovery and infrastructure management
+- Document architecture, troubleshooting and operational procedures
+
+---
+## 📊 Current Status
+
+### Completed
+- [X] Hardware acquisition
+- [X] Initial planning and design
+- [X] MikroTik setup & deployment (updated RouterOS, created config backups, confirmed network connectivity with test client)
+- [X] Architecture diagram creation
+- [X] Managed switch deployment (updated firmware, created config backups, confirmed network connectivity with test client)
+- [X] Physical network topology implementation
+- [X] VLAN design and implementation
+- [X] Implement Python script to automatically back up MikroTik configuration using SSH and RouterOS exports
+- [X] Configure automated scheduled backups using python script with added timestamps to locally saved file
+- [X] Managed switch trunk link configuration and validation
+- [X] Managed switch VLAN propagation and endpoint testing
+- [X] Secure onboarding of used hardware (Dell OptiPlex 3040)
+- [X] Proxmox virtualisation platform deployment
+- [X] Ubuntu Server VM deployment
+- [X] VLAN design refactoring and implementation
+- [X] Proxmox host migration from onboarding VLAN to server VLAN
+- [X] Ubuntu Server VM migration from onboarding VLAN to server VLAN
+- [X] Desktop-based administration restored from trusted management VLAN
+- [X] Debian VM deployment
+- [X] Proxmox host monitoring implementation
+- [X] Container monitoring implementation using cAdvisor
+- [x] Windows Server 2022 VM deployment
+- [x] Windows 11 Client VM deployment
+- [x] Windows 11 domain join
+- [x] DNS server deployment
+- [x] Domain controller promotion
+- [x] Group Policy implementation
+- [x] Windows Server Active Directory lab
+- [x] Raspberry Pi integration
+- [x] Automated MikroTik router configuration backups
+- [x] Automated TP-Link switch configuration backups
+- [x] Backup validation framework
+- [x] Repository replication and validation
+- [x] Raspberry Pi backup automation
+  
+### In Progress
+- [ ] Centralised logging (Splunk)
+
+### Planned
+- AWS integration
+- Wireless infrastructure deployment (MikroTik cAP ac)
+- Secure onboarding of used hardware (HP t640 Thin Client)
+- Security monitoring
+
+---
+## ⚙️ Current Lab Capabilities
+
+- VLAN-segmented network design and management  
+- Virtual machine hosting and lifecycle management  
+- Host and container monitoring  
+- Active Directory authentication and domain management  
+- DNS and Group Policy administration  
+- Automated network device backup and validation  
+- Raspberry Pi configuration backup and recovery  
+- Backup repository replication and verification  
+- Structured operational logging
+
+---
+## 🏗️ Architecture Diagrams
+
+### Current VLAN Segmented Topology (V2)
+
+![VLAN Segmented Topology V2](docs/diagrams/vlan-segmented-topology-v2.JPG)
+
+Additional deployment diagrams:
+
+- [VLAN Segmented Topology V1](docs/diagrams/vlan-segmented-topology.PNG)
+- [Initial MikroTik Deployment](docs/diagrams/initial-mikrotik-deployment.png)  
+- [Managed Switch Deployment](docs/diagrams/managed-switch-deployment.png)
+
+## Deployment Strategy
+
+Use a staged rollout approach to:  
+
+- Minimise disruption to the existing home network  
+- Validate configurations incrementally  
+- Maintain operational stability  
+- Support isolated testing and troubleshooting  
+- Simulate real-world infrastructure deployment practices
+
+---
+## 🖥️ Current Infrastructure
 
 ### Hardware
 
@@ -31,18 +147,25 @@ The lab provides hands-on experience in:
 
 ### Core Technologies
 
-- Grafana
-- Prometheus
-- Pi-hole
-- Docker
-- Docker Compose
-- Proxmox VE
-- AWS CloudWatch
-- MikroTik RouterOS
-- Python
+- Grafana  
+- Prometheus  
+- Pi-hole  
+- Docker  
+- Docker Compose  
+- Proxmox VE  
+- Windows Server 2022  
+- Active Directory Domain Services
+- DNS
+- Group Policy
+- AWS CloudWatch  
+- MikroTik RouterOS  
+- Python  
 - Paramiko
 
-### Network Design
+---
+## 🌐 Network Design
+
+#### Network Overview
 
 - The lab network is built around a MikroTik RB760iGS router with 2x TP-Link TL-SG605E Managed Switches
 - The lab uses "Router on a Stick" (ROAS) with managed L2 switching and VLAN segmentation
@@ -63,7 +186,7 @@ The lab provides hands-on experience in:
 - Disabled unnecessary legacy management services including Telnet and FTP
 - Maintained isolated lab environment separated from the primary home network infrastructure
 
-#### Network Goals
+####  Network Goals
 
 - Separate trusted infrastructure from newly onboarded and testing devices
 - Reduce risk when onboarding used or untrusted hardware into the lab
@@ -90,21 +213,117 @@ The lab provides hands-on experience in:
 - Verified automated MikroTik configuration backup scheduling, export generation and local backup retention workflows
 
 ---
+## 💻 Virtualisation Platform
 
-### Monitoring & Observability
+The lab uses Proxmox VE as the primary virtualisation platform running on a Dell OptiPlex 3040
+
+### Node Summary 
+![Node Summary](docs/screenshots/proxmox-summary.JPG)
+Proxmox VE host summary showing resource utilisation and health of the virtualization platform
+
+### Lab Virtual Machines
+
+#### proxmox01 
+
+- Proxmox VE hypervisor
+- Hosts all virtualised lab workloads
+- Monitored using Prometheus, Grafana and Node Exporter
+- 
+##### debian-monitoring-01
+
+Dedicated observability platform providing:
+
+- Grafana
+- Prometheus
+- Node Exporter
+- cAdvisor
+  
+##### ubuntu-docker-01
+
+Docker workload host providing:
+
+- Docker Engine
+- Docker Compose
+- Containerised application deployment
+- Container-level monitoring via cAdvisor
+  
+##### win-server-01
+
+Windows Server 2022 domain controller providing:
+
+- Active Directory Domain Services  
+- DNS services  
+- Group Policy management  
+- User and computer authentication  
+- Identity and access management
+  
+##### win11-client-01
+
+Domain-joined Windows 11 workstation providing:
+
+- Active Directory authentication testing  
+- Group Policy validation  
+- Domain user access testing  
+- Enterprise endpoint simulation
+
+### Datacenter View 
+![Datacenter View](docs/screenshots/proxmox-datacenter-view.JPG)
+Proxmox VE datacenter view showing Linux and Windows virtual machines hosted within the lab.
+
+---
+## 🏢 Active Directory & Windows Administration
+
+Windows Server 2022 domain controller deployed to introduce Microsoft enterprise infrastructure concepts
+
+The environment provides:
+
+- Active Directory Domain Services
+- DNS services
+- Organisational Unit (OU) management
+- Group Policy administration
+- Centralised authentication and identity management
+
+Domain: lab.local
+Domain Controller: win-server-01
+Client: win11-client-01
+
+Client joined to domain helping to validate:
+- Domain authentication
+- DNS functionality
+- Group policy application
+- User and computer management workflows
+
+
+### Organisational Unit Structure
+![Organisational Unit Structure](docs/screenshots/ad-structure.png)
+
+### User Management
+![User Management](docs/screenshots/ad-users.JPG)
+
+### Security Groups 
+![Security Groups ](docs/screenshots/ad-security-groups.png)
+
+### DNS Services
+![DNS Services](docs/screenshots/ad-dns.JPG)
+
+### Group Policy Management 
+![Group Policy Management](docs/screenshots/ad-gpo.png)
+
+---
+## 📈 Monitoring & Observability
 
 The lab includes a dedicated observability platform running on a Debian virtual machine hosted on Proxmox VE.
 
-#### Observability Stack
+### Observability Stack
 
 - Prometheus
 - Grafana
 - Node Exporter
 - cAdvisor
 
-#### Monitoring Coverage
+### Monitoring Coverage
 
-##### Proxmox Host
+#### Proxmox Host
 
 - CPU utilisation
 - Memory utilisation
@@ -113,7 +332,7 @@ The lab includes a dedicated observability platform running on a Debian virtual 
 - System uptime
 - System load
 
-##### Virtual Machines
+#### Virtual Machines
 
 - debian-monitoring-01
 - ubuntu-docker-01
@@ -127,7 +346,7 @@ Metrics collected:
 - System uptime
 - System load
 
-##### Containers
+#### Containers
 
 Container-level monitoring is provided through cAdvisor.
 
@@ -137,7 +356,7 @@ Metrics collected:
 - Container memory utilisation
 - Container status and availability
 
-##### Grafana Dashboards
+### Grafana Dashboards
 
 - Homelab Overview
 - proxmox01 Dashboard
@@ -145,7 +364,7 @@ Metrics collected:
 - ubuntu-docker-01 Dashboard
 - Container Monitoring Dashboard
 
-### Dashboard Screenshots
+#### Dashboard Screenshots
 
 #### Homelab Overview
 ![Homelab Overview](docs/diagrams/homelab-overview-dashboard.JPG)
@@ -157,144 +376,67 @@ Metrics collected:
 ![Proxmox Dashboard](docs/diagrams/proxmox01-dashboard.JPG)
 
 ---
+## 💾 Backup & Recovery Automation
 
-### Virtualisation Platform
-
-The lab uses Proxmox VE as the primary virtualisation platform running on a Dell OptiPlex 3040.
-
-#### Current Virtual Machines
-
-##### proxmox01
-
-- Proxmox VE hypervisor
-- Hosts all virtualised lab workloads
-- Monitored using Prometheus, Grafana and Node Exporter
-
-##### debian-monitoring-01
-
-Dedicated observability platform providing:
-
-- Grafana
-- Prometheus
-- Node Exporter
-- cAdvisor
-
-##### ubuntu-docker-01
-
-Docker workload host providing:
-
-- Docker Engine
-- Docker Compose
-- Containerised application deployment
-- Container-level monitoring via cAdvisor
+A backup and recovery platform developed to protect network devices and critical services
+  
+Current coverage includes:  
+  
+- MikroTik router configuration backups  
+- TP-Link switch configuration backups  
+- Raspberry Pi system configuration backups  
+- Backup validation and integrity testing  
+- Repository replication and verification  
+- Structured JSONL operational logging  
+  
+Backups are stored locally before being replicated to secondary storage for recovery purposes
+  
+The platform was designed to provide hands-on experience with automation, validation workflows, backup management, operational logging and disaster recovery concepts
 
 ---
+## 🔍 Issues & Troubleshooting
 
-## Project Goals
+#### VLAN & Network Segmentation  
+  
+- Diagnosed and resolved MikroTik VLAN deployment issue where DNS and management traffic were being blocked by firewall interface-list behaviour
+- Resolved temporary management lockout during VLAN migration by using direct recovery access
+- Diagnosed switch management connectivity issues caused by legacy pre-VLAN management addressing and corrected device configuration
+- Diagnosed inter-VLAN management reachability behaviour and implemented MikroTik firewall filter rules to enforce onboarding VLAN isolation 
 
-- Build a VLAN-segmented hybrid infrastructure lab
-- Develop networking and infrastructure skills
-- Implement monitoring and observability
-- Learn and practice virtualisation and Linux administration
-- Integrate cloud services with on-premises infrastructure
-- Document deployment, troubleshooting and operational workflows
+#### Management Plane Hardening  
+  
+- Identified that MikroTik MAC-based management and Neighbor Discovery services could bypass Layer 3 firewall isolation during Onboarding VLAN testing
 
+#### Server Network Deployment  
+  
+- Diagnosed VLAN30 connectivity failure caused by SW02 Port 4 retaining its VLAN20 PVID after being reassigned as an untagged VLAN30 access port
+- Updated Proxmox host network configuration after identifying that the host retained its VLAN20 addressing following migration to the VLAN30 server network
+- Reconfigured Ubuntu Server VM networking after identifying that the VM retained its previous VLAN20 DHCP lease after the Proxmox bridge moved to VLAN30  
+
+#### Firewall & Connectivity Validation  
+  
+- Diagnosed inter-VLAN firewall rule ordering issue where VLAN30 return traffic to VLAN10 was dropped before established and related traffic was accepted
+- Diagnosed inter-VLAN connectivity issues by distinguishing MikroTik input-chain gateway traffic from forward-chain host traffic during firewall validation
+- Identified local Windows firewall behaviour as the cause of VLAN20 laptop ICMP reachability issues after validating MikroTik routing, VLAN tagging and firewall policy
 
 ---
-
-## Planned Architecture
+## 🚀 Roadmap
 
 - [X] MikroTik core routing
 - [X] Managed switch uplinks and trunking
 - [X] VLAN segmentation
 - [X] Monitoring and observability platform
 - [X] Proxmox virtualisation platform
-- [ ] Wireless Infrastructure Deployment
+- [x] Windows Server Active Directory
+- [x] Backup and recovery platform
+- [ ] Wireless infrastructure Deployment
 - [ ] AWS-integrated hybrid services
-- [ ] Windows Server Active Directory
+- [ ] Centralised logging with Splunk
+- [ ] Infrastructure as Code (Terraform)
+- [ ] Configuration management (Ansible)
 
 ---
-## Architecture Diagrams
-
-### Current VLAN Segmented Topology (V2)
-
-![VLAN Segmented Topology V2](docs/diagrams/vlan-segmented-topology-v2.JPG)
-
-Additional deployment diagrams:
-
-- [VLAN Segmented Topology V1](docs/diagrams/vlan-segmented-topology.PNG)
-- [Initial MikroTik Deployment](docs/diagrams/initial-mikrotik-deployment.png)  
-- [Managed Switch Deployment](docs/diagrams/managed-switch-deployment.png)
-
-## Deployment Strategy
-
-Use a staged rollout approach to:  
-
-- Minimise disruption to the existing home network  
-- Validate configurations incrementally  
-- Maintain operational stability  
-- Support isolated testing and troubleshooting  
-- Simulate real-world infrastructure deployment practices
-
----
-
-## Current Status
-
-### Completed
-- [X] Hardware acquisition
-- [X] Initial planning and design
-- [X] MikroTik setup & deployment (updated RouterOS, created config backups, confirmed network connectivity with test client)
-- [X] Architecture diagram creation
-- [X] Managed switch deployment (updated firmware, created config backups, confirmed network connectivity with test client)
-- [X] Physical network topology implementation
-- [X] VLAN design and implementation
-- [X] Implement Python script to automatically back up MikroTik configuration using SSH and RouterOS exports
-- [X] Configure automated scheduled backups using python script with added timestamps to locally saved file
-- [X] Managed switch trunk link configuration and validation
-- [X] Managed switch VLAN propagation and endpoint testing
-- [X] Secure onboarding of used hardware (Dell OptiPlex 3040)
-- [X] Proxmox virtualisation platform deployment
-- [X] Ubuntu Server VM deployment
-- [X] VLAN design refactoring and implementation
-- [X] Proxmox host migration from onboarding VLAN to server VLAN
-- [X] Ubuntu Server VM migration from onboarding VLAN to server VLAN
-- [X] Desktop-based administration restored from trusted management VLAN
-- [X] Debian VM deployment
-- [X] Proxmox host monitoring implementation
-- [X] Container monitoring implementation using cAdvisor
-  
-### In Progress
-- [ ] Windows Server Active Directory lab
-
-### Planned
-- Wireless infrastructure deployment (MikroTik cAP ac)
-- Raspberry Pi integration
-- AWS CloudWatch implementation
-- Centralised device log collection 
-- Automated device configuration backups
-- Secure onboarding of used hardware (HP t640 Thin Client)
-- Security monitoring
-
----
-
-## Issues & Troubleshooting
-
-- Diagnosed and resolved MikroTik VLAN deployment issue where DNS and management traffic were being blocked by firewall interface-list behaviour
-- Resolved temporary management lockout during VLAN migration by using direct recovery access
-- Identified and corrected legacy switch management addressing remaining from pre-VLAN deployment
-- Diagnosed inter-vlan management reachability behaviour and implemented MikroTik firewall filter rules to enforce onboarding VLAN isolation
-- Identified that MikroTik MAC-based management and Neighbor Discovery services could bypass Layer 3 firewall isolation during Onboarding VLAN testing  
-- Investigated management-plane exposure by validating inter-VLAN firewall behaviour, service accessibility and discovery protocols across segmented VLAN infrastructure  
-- Implemented dedicated management interface list and restricted WinBox, SSH, MAC Server and Neighbor Discovery access to the trusted management VLAN only  
-- Successfully hardened Onboarding VLAN isolation while preserving DHCP, DNS and internet connectivity for untrusted devices
-- Diagnosed VLAN30 connectivity failure caused by SW02 Port 4 retaining its VLAN20 PVID after being reassigned as an untagged VLAN30 access port
-- Updated Proxmox host network configuration after identifying that the host retained its VLAN20 addressing following migration to the VLAN30 server network
-- Reconfigured Ubuntu Server VM networking after identifying that the VM retained its previous VLAN20 DHCP lease after the Proxmox bridge moved to VLAN30
-- Diagnosed inter-VLAN firewall rule ordering issue where VLAN30 return traffic to VLAN10 was dropped before established and related traffic was accepted
-- Distinguished MikroTik input-chain gateway traffic from forward-chain inter-VLAN host traffic during firewall validation and rule placement
-- Identified local Windows firewall behaviour as the cause of VLAN20 laptop ICMP reachability issues after validating MikroTik routing, VLAN tagging and firewall policy
-
-## Related Projects
+## 🔗 Related Projects
 
 - [raspberry-pi-system-monitor](https://github.com/Am1tp/raspberry-pi-system-monitor)
 - [pihole-infrastructure](https://github.com/Am1tp/pihole-infrastructure)
