@@ -2,20 +2,20 @@
 
 ## Navigation
 
-- 📖 [Overview](#overview)
-- 🎯 [Project Goals](#project-goals)
-- 📊 [Current Status](#current-status)
-- ⚙️ [Current Lab Capabilities](#current-lab-capabilities)
-- 🏗️ [Architecture Diagrams](#architecture-diagrams)
-- 🖥️ [Current Infrastructure](#current-infrastructure)
-- 🌐 [Network Design](#network-design)
-- 💻 [Virtualisation Platform](#virtualisation-platform)
-- 🏢 [Active Directory & Windows Administration](#active-directory--windows-administration)
-- 📈 [Monitoring & Observability](#monitoring--observability)
-- 💾 [Backup & Recovery Automation](#backup--recovery-automation)
-- 🔍 [Issues & Troubleshooting](#issues--troubleshooting)
-- 🚀 [Roadmap](#roadmap)
-- 🔗 [Related Projects](#related-projects)
+- 📖 [Overview](#-overview)
+- 🎯 [Project Goals](#-project-goals)
+- 📊 [Current Status](#-current-status)
+- ⚙️ [Current Lab Capabilities](#-current-lab-capabilities)
+- 🏗️ [Architecture Diagrams](#-architecture-diagrams)
+- 🖥️ [Current Infrastructure](#-current-infrastructure)
+- 🌐 [Network Design](#-network-design)
+- 💻 [Virtualisation Platform](#-virtualisation-platform)
+- 🏢 [Active Directory & Windows Administration](#-active-directory--windows-administration)
+- 📈 [Monitoring & Observability](#-monitoring--observability)
+- 💾 [Backup & Recovery Automation](#-backup--recovery-automation)
+- 🔍 [Issues & Troubleshooting](#-issues--troubleshooting)
+- 🚀 [Roadmap](#-roadmap)
+- 🔗 [Related Projects](#-related-projects)
 
 ---
 ## 📖 Overview
