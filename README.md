@@ -85,15 +85,19 @@ The lab provides hands-on experience in:
 - [x] Backup validation framework
 - [x] Repository replication and validation
 - [x] Raspberry Pi backup automation
+- [X] Centralised logging (Splunk)
   
 ### In Progress
-- [ ] Centralised logging (Splunk)
+- [ ] AWS S3 offsite backup replication for 3-2-1 backup strategy
+- [ ] AWS S3 backup validation and restore testing
 
 ### Planned
-- AWS integration
-- Wireless infrastructure deployment (MikroTik cAP ac)
-- Secure onboarding of used hardware (HP t640 Thin Client)
-- Security monitoring
+- [ ] Standardise multi-stage backup logging across device automation scripts
+- [ ] Add retention policy for backup archives
+- [ ] Wireless infrastructure deployment (MikroTik cAP ac)
+- [ ] Secure onboarding of used hardware (HP t640 Thin Client)
+- [ ] Security monitoring platform deployment
+- [ ] Lab 2 network expansion
 
 ---
 ## ⚙️ Current Lab Capabilities
@@ -161,6 +165,7 @@ Use a staged rollout approach to:
 - MikroTik RouterOS  
 - Python  
 - Paramiko
+- Splunk
 
 ---
 ## 🌐 Network Design
@@ -228,7 +233,7 @@ Proxmox VE host summary showing resource utilisation and health of the virtualiz
 - Proxmox VE hypervisor
 - Hosts all virtualised lab workloads
 - Monitored using Prometheus, Grafana and Node Exporter
-- 
+
 ##### debian-monitoring-01
 
 Dedicated observability platform providing:
@@ -373,6 +378,34 @@ Metrics collected:
 #### Proxmox Host Monitoring
 ![Proxmox Dashboard](docs/diagrams/proxmox01-dashboard.JPG)
 
+### Splunk Log Monitoring & Alerting 
+
+Splunk added to provide centralised log monitoring for the automated backup and recovery platform.
+
+Structured JSONL backup and validation logs are ingested into Splunk from the backup repository and used to monitor backup health across expected devices.
+
+#### Backup Platform Overview Dashboard
+
+Provides visibility of:
+
+- Expected monitored backup devices
+- Backup failures within the weekly backup window
+- Validation failures within the weekly backup window
+- Missing backups where an expected device has not produced a successful backup event
+- Missing validations where an expected device has not produced a successful validation event
+- Per-device backup status, validation status, backup age, validation age and latest backup/validation timestamps
+
+![Backup Platform Overview Dashboard](docs/screenshots/splunk-backup-platform-overview.JPG)
+
+#### Scheduled Alerts
+
+Scheduled alerts are configured to detect:
+
+- Backup failure or missing successful backup
+- Validation failure or missing successful validation
+
+![Scheduled Alerts](docs/screenshots/splunk-backup-alerts.JPG)
+
 ---
 ## 💾 Backup & Recovery Automation
 
@@ -417,6 +450,14 @@ The platform was designed to provide hands-on experience with automation, valida
 - Diagnosed inter-VLAN connectivity issues by distinguishing MikroTik input-chain gateway traffic from forward-chain host traffic during firewall validation
 - Identified local Windows firewall behaviour as the cause of VLAN20 laptop ICMP reachability issues after validating MikroTik routing, VLAN tagging and firewall policy
 
+#### Backup, Logging & Splunk Monitoring
+
+- Standardised backup completion logging across Raspberry Pi, MikroTik and TP-Link backup workflows after identifying inconsistent stage naming between scripts
+
+#### Active Directory & Access Validation
+
+- Fixed incorrect file share permission behaviour caused by cached Kerberos access tokens and resolved validation by purging tickets and re-authenticating
+
 ---
 ## 🚀 Roadmap
 
@@ -427,9 +468,13 @@ The platform was designed to provide hands-on experience with automation, valida
 - [X] Proxmox virtualisation platform
 - [x] Windows Server Active Directory
 - [x] Backup and recovery platform
-- [ ] Wireless infrastructure Deployment
-- [ ] AWS-integrated hybrid services
-- [ ] Centralised logging with Splunk
+- [X] Centralised logging and alerting with Splunk
+- [ ] 3-2-1 backup strategy implementation
+- [ ] Backup validation and restore testing
+- [ ] Wireless infrastructure deployment
+- [ ] Security monitoring platform deployment
+- [ ] Lab 2 network expansion
+- [ ] Site-to-site VPN between Lab 1 and Lab 2
 - [ ] Infrastructure as Code (Terraform)
 - [ ] Configuration management (Ansible)
 
