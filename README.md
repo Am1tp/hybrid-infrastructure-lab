@@ -122,9 +122,13 @@ The lab provides hands-on experience in:
 ---
 ## 🏗️ Architecture Diagrams
 
-### Current VLAN Segmented Topology (V2)
+### Lab 1 Architecture
 
-![VLAN Segmented Topology V2](docs/diagrams/vlan-segmented-topology-v2.JPG)
+![Lab 1 Architecture](docs/diagrams/Lab1-Architecture.JPG)
+
+### Current VLAN Segmented Network Topology (V2)
+
+![VLAN Segmented Network Topology V2](docs/diagrams/vlan-segmented-topology-v2.JPG)
 
 Additional deployment diagrams:
 
@@ -162,19 +166,16 @@ Use a staged rollout approach to:
 - Prometheus  
 - Pi-hole  
 - Docker  
-- Docker Compose  
+- Docker Compose
+- Splunk  
 - Proxmox VE  
 - Windows Server 2022  
-- Active Directory Domain Services
-- DNS
-- Group Policy
-- AWS CloudWatch  
+- Active Directory Domain Services 
 - MikroTik RouterOS  
 - Python  
-- Paramiko
-- Splunk
 - AWS S3
 - AWS IAM
+- AWS CloudWatch
 
 ---
 ## 🌐 Network Design
@@ -243,7 +244,7 @@ Proxmox VE host summary showing resource utilisation and health of the virtualiz
 - Hosts all virtualised lab workloads
 - Monitored using Prometheus, Grafana and Node Exporter
 
-##### debian-monitoring-01
+#### debian-monitoring-01
 
 Dedicated observability platform providing:
 
@@ -252,7 +253,7 @@ Dedicated observability platform providing:
 - Node Exporter
 - cAdvisor
   
-##### ubuntu-docker-01
+#### ubuntu-docker-01
 
 Docker workload host providing:
 
@@ -261,7 +262,7 @@ Docker workload host providing:
 - Containerised application deployment
 - Container-level monitoring via cAdvisor
   
-##### win-server-01
+#### win-server-01
 
 Windows Server 2022 domain controller providing:
 
@@ -271,7 +272,7 @@ Windows Server 2022 domain controller providing:
 - User and computer authentication  
 - Identity and access management
   
-##### win11-client-01
+#### win11-client-01
 
 Domain-joined Windows 11 workstation providing:
 
