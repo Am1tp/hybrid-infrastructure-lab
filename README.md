@@ -126,9 +126,18 @@ The lab provides hands-on experience in:
 
 ![Lab 1 Architecture](docs/diagrams/Lab1-Architecture.JPG)
 
-### Current VLAN Segmented Network Topology (V2)
+### Lab 1 - Current VLAN Segmented Network Topology (V2)
 
-![VLAN Segmented Network Topology V2](docs/diagrams/vlan-segmented-topology-v2.JPG)
+![Lab 1 - Current VLAN Segmented Network Topology (V2)](docs/diagrams/vlan-segmented-topology-v2.JPG)
+
+### Lab 2 – Multi-Vendor Infrastructure Site
+
+- Lab 2 extends the Hybrid Infrastructure Lab by introducing Juniper and Cisco enterprise networking technologies
+- The objective is to develop hands-on experience with JunOS, Cisco IOS, VLAN segmentation, firewalling, routing, VPNs, monitoring, automation and hybrid cloud networking using a dedicated multi-  vendor environment.
+
+### Lab 2 - Current VLAN segmented Network Topology
+
+![Lab 2 - Current VLAN segmented Network Topology](docs/diagrams/lab2-vlan-segmented-network-topology.PNG)
 
 Additional deployment diagrams:
 
@@ -500,8 +509,9 @@ Replication workflow:
 - Fixed incorrect file share permission behaviour caused by cached Kerberos access tokens and resolved validation by purging tickets and re-authenticating
 
 ---
-## 🚀 Roadmap
+## 🚀 Roadmaps
 
+### Lab 1
 - [X] MikroTik core routing
 - [X] Managed switch uplinks and trunking
 - [X] VLAN segmentation
@@ -517,9 +527,31 @@ Replication workflow:
 - [ ] Wireless infrastructure deployment
 - [ ] Security monitoring platform deployment
 - [ ] Lab 2 network expansion
-- [ ] Site-to-site VPN between Lab 1 and Lab 2
-- [ ] Infrastructure as Code (Terraform)
+- [ ] Advanced networking - Site-to-Site VPN
 - [ ] Configuration management (Ansible)
+- [ ] Infrastructure as Code (Terraform)
+
+### Lab 2 
+- [X] Network design
+- [ ] Juniper SRX300 onboarding
+- [ ] Cisco 3560CG onboarding
+- [ ] Initial management and setup of network devices
+- [ ] Configure automated backups for network device configurations
+- [ ] HP T640 onboarding
+- [ ] Initial management and setup of HP T640
+- [ ] VMware ESXi installation and setup
+- [ ] Configure automated backups for HP T640
+- [ ] DHCP services
+- [ ] VLAN segmentation
+- [ ] Configure Inter-vlan routing
+- [ ] Syslog integration
+- [ ] Splunk monitoring  
+- [ ] Inter-site connectivity - Static routing
+- [ ] Inter-site connectivity - OSPF
+- [ ] Advanced networking - BGP
+- [ ] Advanced networking - Site-to-Site VPN
+- [ ] Configuration management (Ansible)
+- [ ] Infrastructure as Code (Terraform)
 
 ---
 ## 🔗 Related Projects
