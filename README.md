@@ -20,7 +20,7 @@
 ---
 ## 📖 Overview
 
-A self-hosted enterprise-style hybrid infrastructure lab used to develop and demonstrate practical skills in networking, Linux administration, virtualisation, observability, automation and cloud-integrated operations.
+A self-hosted enterprise-style hybrid infrastructure lab used to develop and demonstrate practical skills across networking, systems administration, virtualisation, observability, automation and cloud-integrated operations. The environment incorporates multi-vendor networking technologies including MikroTik, Cisco and Juniper platforms alongside Windows Server, Linux, Proxmox VE, Splunk and AWS services.
 
 The lab provides hands-on experience in:
 
