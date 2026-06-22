@@ -90,9 +90,19 @@ The lab provides hands-on experience in:
 - [x] AWS S3 backup validation
 - [x] Encrypted offsite backup storage
 - [X] AWS backup monitoring dashboards
+- [X] Lab 2 network expansion
+- [X] Juniper SRX300 onboarding
+- [X] Cisco Catalyst 3560CG onboarding
+- [X] Lab 2 VLAN architecture deployment
+- [X] Lab 2 DHCP services
+- [X] Lab 2 inter-VLAN routing
   
 ### In Progress
-- [ ] Lab 2 network expansion
+- [ ] Automated backup of network device configurations
+- [ ] Lab 2 proxmox vm configurations
+- [ ] Lab 2 centralised logging platform 
+- [ ] Lab 2 syslog integration
+- [ ] Lab 2 network automation (Ansible)
 
 ### Planned
 - [ ] Standardise multi-stage backup logging across device automation scripts
@@ -118,6 +128,11 @@ The lab provides hands-on experience in:
 - Encrypted backup archive storage
 - Backup replication validation
 - Offsite backup monitoring and alerting
+- Multi-vendor network administration (MikroTik, Cisco, Juniper)
+- Enterprise firewall administration and security zoning
+- Inter-VLAN routing and policy-based access control
+- Enterprise switching and VLAN trunking
+- Multi-site infrastructure design
 
 ---
 ## 🏗️ Architecture Diagrams
@@ -185,6 +200,27 @@ Use a staged rollout approach to:
 - AWS S3
 - AWS IAM
 - AWS CloudWatch
+- Cisco IOS
+- Juniper JunOS
+
+### Lab 2 Infrastructure
+
+Lab 2 extends the primary hybrid infrastructure environment with a dedicated multi-vendor networking site designed to further develop enterprise networking, administration, security and automation skills.
+
+Hardware:
+
+- Juniper SRX300 firewall
+- Cisco Catalyst 3560CG managed switch
+- HP t640 - Proxmox host
+
+Implemented capabilities:
+
+- DHCP services
+- Security zones
+- Inter-VLAN routing
+- 802.1Q trunking
+- SSH administration
+- Enterprise firewall policies
 
 ---
 ## 🌐 Network Design
@@ -477,6 +513,8 @@ Replication workflow:
 ---
 ## 🔍 Issues & Troubleshooting
 
+### Lab 1
+
 #### VLAN & Network Segmentation  
   
 - Diagnosed and resolved MikroTik VLAN deployment issue where DNS and management traffic were being blocked by firewall interface-list behaviour
@@ -508,6 +546,16 @@ Replication workflow:
 
 - Fixed incorrect file share permission behaviour caused by cached Kerberos access tokens and resolved validation by purging tickets and re-authenticating
 
+
+### Lab 2
+
+#### Multi-Vendor Infrastructure & Management Access
+- Diagnosed Cisco management connectivity issues caused by the VLAN10 management SVI lacking an assigned IP address and restored remote administration by implementing a dedicated management interface and default gateway
+- Diagnosed SSH management connectivity issues caused by protocol compatibility differences between network infrastructure and administrative clients, restoring secure remote device administration
+
+#### Firewall & Connectivity Validation
+- Diagnosed apparent HP t640 Proxmox management connectivity issues after onboarding into the SERVERS VLAN. Investigation using packet capture analysis eliminated routing, VLAN and firewall policy faults, restoring successful management connectivity.
+
 ---
 ## 🚀 Roadmaps
 
@@ -526,24 +574,24 @@ Replication workflow:
 - [ ] Backup archive retention policies
 - [ ] Wireless infrastructure deployment
 - [ ] Security monitoring platform deployment
-- [ ] Lab 2 network expansion
+- [X] Lab 2 network expansion
 - [ ] Advanced networking - Site-to-Site VPN
 - [ ] Configuration management (Ansible)
 - [ ] Infrastructure as Code (Terraform)
 
 ### Lab 2 
 - [X] Network design
-- [ ] Juniper SRX300 onboarding
-- [ ] Cisco 3560CG onboarding
-- [ ] Initial management and setup of network devices
+- [X] Juniper SRX300 onboarding
+- [X] Cisco 3560CG onboarding
+- [X] Initial management and setup of network devices
 - [ ] Configure automated backups for network device configurations
-- [ ] HP T640 onboarding
-- [ ] Initial management and setup of HP T640
-- [ ] VMware ESXi installation and setup
+- [X] HP T640 onboarding
+- [X] Initial management and setup of HP T640
+- [X] Proxmox VE installation and setup
 - [ ] Configure automated backups for HP T640
-- [ ] DHCP services
-- [ ] VLAN segmentation
-- [ ] Configure Inter-vlan routing
+- [X] DHCP services
+- [X] VLAN segmentation
+- [X] Configure Inter-vlan routing
 - [ ] Syslog integration
 - [ ] Splunk monitoring  
 - [ ] Inter-site connectivity - Static routing
